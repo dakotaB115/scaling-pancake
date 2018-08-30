@@ -44,4 +44,23 @@ class StoriesTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.isEditing = true
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.headlines[sourceIndexPath.row]
+        headlines.remove(at: sourceIndexPath.row)
+        headlines.insert(movedObject, at: destinationIndexPath.row)
+    }
 }
